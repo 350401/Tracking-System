@@ -7,7 +7,7 @@
 	<artifactId>trackingysystem</artifactId>
 	<version>1.0</version>
 
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
@@ -18,12 +18,12 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
-			<exclusions>
+			<!--<exclusions>
 				<exclusion>
 					<groupId>org.springframework.boot</groupId>
 					<artifactId>spring-boot-starter-tomcat</artifactId>
 				</exclusion>
-			</exclusions>
+			</exclusions>-->
 		</dependency>
 		<dependency>
 			<groupId>javax.servlet</groupId>
@@ -47,7 +47,7 @@
 	</dependencies>
 
 	<properties>
-		<java.version>1.8</java.version>
+		<java.version>1.7</java.version>
 	</properties>
 
 
@@ -56,9 +56,9 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-				    <configuration>
+				    <!--<configuration>
 					<mainClass>tracksys.application.Application</mainClass>
-				    </configuration>
+				    </configuration>-->
 			</plugin>
 			<plugin>
                 <groupId>org.apache.maven.plugins</groupId>
