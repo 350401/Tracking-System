@@ -465,7 +465,7 @@
 			  <div class="panel-heading" style="background-image: linear-gradient(to bottom,#ffffff 0,#7dd05c 100%);color:#000000" ><strong>Configuration</strong></div>
 			  <div class="panel-body">
 									<div class="row" >
-										<div class="col-xs-3 panel panel-success" style="margin:10px;padding:0px" >
+										<div class="col-xs-3 panel panel-success" style="margin:10px;padding:0px" ng-if="previliges.configuration == true " >
 											<div class="panel-heading" style="background-image: linear-gradient(to bottom,#ffffff 0,#7dd05c 100%);color:#000000" >
 											<strong>Agents </strong></div>
 											<div class="panel-body">
@@ -988,7 +988,7 @@
 			  <div class="panel-heading" ng-if="optType=='edit'">Edit User details </div>
 			  <div class="panel-body">
 					<div class="row" >
-					  <div class="col-xs-6 panel panel-info" style="margin:10px;" >
+					  <div class="col-xs-5 panel panel-info" style="margin:10px;" >
 					  
 							<form class="form-horizontal input-sm" name="userform" novalidate >
 							  <div class="form-group" ng-class="{'has-error' : submitclick && userform['user.username'].$invalid }">
@@ -1030,7 +1030,7 @@
 	  
 							  <div class="form-group">
 								<label for="inputPassword3" class="col-sm-5 control-label">User Type</label>
-								<div class="col-sm-5">
+								<div class="col-sm-6">
 								  <input type="radio" ng-model="user.type" value="admin">Admin
 								  <input type="radio" ng-model="user.type" value="user">Application User
 								</div>
@@ -1052,11 +1052,12 @@
 							</form>
 					  </div>
 					  
-					  <div class="col-xs-5 panel panel-info" style="margin:10px" >
+					  <div class="col-xs-6 panel panel-info" style="margin:10px" >
 					      	<form class="form-horizontal">
 							
           <table class="table table-hover input-sm">
 		  <thead> <tr> <th>#</th> <th>Company Name</th> 
+		  <th>Configuration</th> 
 		  <th>Accounting Info</th> 
 		  <th>Inventory Info</th> 
 		  <th>Transactions</th>
@@ -1066,6 +1067,7 @@
 			  <tr ng-repeat="previlige in previliges"> 
 				<th scope="row">{{$index+1}}</th> 
 				<td>{{previlige.company.name}} </td> 
+				<td><input type="checkbox" ng-model="previlige.configuration" value="true"></td> 
 				<td>
 					<input type="checkbox" ng-model="previlige.accountinfo" value="true">
 				</td>
@@ -1228,7 +1230,7 @@
 		  <thead> <tr> <th>Group ID</th> <th>Group Name</th> <th>Parent Group Name</th> <th></th> </tr> </thead> 
 		  <tbody> 
 			  <tr ng-repeat="group in groups" ng-if="group.id > 1" > 
-				<td>{{group.id}}</td> 
+				<td>{{$index+1}}</td> 
 				<td>{{group.name}} </td> 
 				<td> {{   group.parent > 1 ? ((groups | filter : {id: group.parent})[0].name) : ''    }} </td> 
 			    <td>
@@ -1836,7 +1838,7 @@
 	  </script>	
 	
 	
-	  <script type="text/ng-template" id="/inline-PurchaseReturn.html">	
+	  <script type="text/ng-template" id="/inline-PurchaseReturn-1.html">	
 		<div class="container-fluid">
 			<div class="panel panel-success" > 
 			  <div class="panel-heading" style="background-image: linear-gradient(to bottom,#ffffff 0,#7dd05c 100%);color:#000000">Purchase Return </div>
