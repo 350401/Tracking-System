@@ -73,17 +73,17 @@ public class TransactionController {
 				case 2:  
 					tempItemDtl = itemDtlsRepo.findOne(itemDetail.getId());
 					tempItemDtl.setCurqundty(tempItemDtl.getCurqundty() - itemDetail.getCurqundty());
-					tempItemDtl.setCurpices(tempItemDtl.getCurpices()- itemDetail.getCurpices());
+					//tempItemDtl.setCurpices(tempItemDtl.getCurpices()- itemDetail.getCurpices());
 					break;
 				case 3:  
 					tempItemDtl = itemDtlsRepo.findOne(itemDetail.getId());
 					tempItemDtl.setCurqundty(tempItemDtl.getCurqundty() - itemDetail.getCurqundty());
-					tempItemDtl.setCurpices(tempItemDtl.getCurpices()- itemDetail.getCurpices());
+					//tempItemDtl.setCurpices(tempItemDtl.getCurpices()- itemDetail.getCurpices());
 					break;					
 				case 4:  
 					tempItemDtl = itemDtlsRepo.findOne(itemDetail.getId());
 					tempItemDtl.setCurqundty(tempItemDtl.getCurqundty() + itemDetail.getCurqundty());
-					tempItemDtl.setCurpices(tempItemDtl.getCurpices() + itemDetail.getCurpices());
+					//tempItemDtl.setCurpices(tempItemDtl.getCurpices() + itemDetail.getCurpices());
 					break;
 				}				
 				tempItemDtl = itemDtlsRepo.save(tempItemDtl);
@@ -104,10 +104,15 @@ public class TransactionController {
 		return transactionRepository.findAll();
 	}	
 	
-	@RequestMapping(value ="/findAll-by-type/{type}",method = RequestMethod.GET)
-	public  @ResponseBody Iterable<Transaction> findAllTRsacionByType(@PathVariable("type") int type) {
-		return transactionRepository.findAllByType(type);
-	}		
+	@RequestMapping(value ="/findAll-by-type/{companyId}/{type}",method = RequestMethod.GET)
+	public  @ResponseBody Iterable<Transaction> findAllTRsacionByType(@PathVariable("companyId") int companyId, @PathVariable("type") int type) {
+		return transactionRepository.findAllByType_Company(companyId, type);
+	}	
+	
+	@RequestMapping(value ="/find-by-id/{transId}",method = RequestMethod.GET)
+	public  @ResponseBody Transaction getById(@PathVariable("companyId") int transId) {
+		return transactionRepository.findOne(transId);
+	}	
 	
 	@Autowired
 	private ItemRepository itemRepository;	

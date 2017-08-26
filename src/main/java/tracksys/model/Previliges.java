@@ -22,6 +22,8 @@ public class Previliges {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
+	private String configuration;
+	
 	private String accountinfo;
 	
 	private String inventoryinfo;
@@ -92,6 +94,14 @@ public class Previliges {
 
 	public void setCompany(Company company) {
 		this.company = company;
+	}
+
+	public String getConfiguration() {
+		return configuration;
+	}
+
+	public void setConfiguration(String configuration) {
+		this.configuration = configuration;
 	}
 	
 

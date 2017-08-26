@@ -56,6 +56,18 @@ public class ItemController {
 		return new ResponseEntity<Item>(item, HttpStatus.OK);
 	}
 	
+	  @RequestMapping(value ="/item/find-by-company/{companyId}",method = RequestMethod.GET)
+	  public ResponseEntity<Iterable<Item>> findbyCompany(@PathVariable("companyId") int companyId) {
+		  Iterable<Item> itemList = null;
+	    try {
+	    	itemList = itemRepository.findByStockGroup_Company(companyId);
+	    }
+		catch (Exception ex) {
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+		return new ResponseEntity<Iterable<Item>>(itemList, HttpStatus.OK);
+	}	
+	
 	@RequestMapping(value ="/item/find-by-name/{itemname}",method = RequestMethod.GET)
 	public ResponseEntity<Iterable<Item>> findAllByName(@PathVariable("itemname") String itemname) {
 		Iterable<Item> itemList = null;
@@ -81,7 +93,7 @@ public class ItemController {
 
 
 	@RequestMapping(value ="/itemtrans/find-by-itemid/itemId",method = RequestMethod.GET)
-	public ResponseEntity<Iterable<ItemDetails>> findbyCompany(@PathVariable("itemId") int itemId) {
+	public ResponseEntity<Iterable<ItemDetails>> findbyItemId(@PathVariable("itemId") int itemId) {
 		Iterable<ItemDetails> itemTransList = null;
 		try {
 			Item item = new Item();

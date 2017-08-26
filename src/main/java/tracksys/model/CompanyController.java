@@ -26,32 +26,37 @@ public class CompanyController {
 	  @RequestMapping(value ="/create",method = RequestMethod.POST)
 	  
 	  public @ResponseBody Company  create(@RequestBody Company company) {
+
+		  boolean isCompanyExists = companyRepository.exists(company.getId());
 		  company =  companyRepository.save(company);
-		  
-		 Iterable<User> users = userRepostory.findAll(); 
-		 List<Previliges> prevList = new ArrayList<Previliges>();
-		 Previliges previliges = null;
-		 for(User user : users){
-			 previliges = new Previliges();
-			 previliges.setUser(user);
-			 previliges.setCompany(company);
-			 previliges.setAccountinfo("false");
-			 previliges.setInventoryinfo("false");
-			 previliges.setReports("false");
-			 previliges.setTransactions("false");
-			 prevList.add(previliges);
-		 }
-		 userPreviligeReposotory.save(prevList);
-		 
-		 List<AccGroup> accGroupList = new ArrayList<AccGroup>();
-		 accGroupList.add( new AccGroup("Sundry Creditors", company,1));
-		 accGroupList.add( new AccGroup("Sundry Debtors", company,1));
-		 accGroupList.add( new AccGroup("Purchases", company,1));
-		 accGroupList.add( new AccGroup("Sales", company,1));
-		 accGroupList.add( new AccGroup("Cash", company,1));
-		 accGroupList.add( new AccGroup("Bank", company,1));
-		 accGroupRepository.save(accGroupList);
-		 
+
+		  if(!isCompanyExists){		//Create Company 
+			  Iterable<User> users = userRepostory.findAll(); 
+			  List<Previliges> prevList = new ArrayList<Previliges>();
+			  Previliges previliges = null;
+			  for(User user : users){
+				  previliges = new Previliges();
+				  previliges.setUser(user);
+				  previliges.setCompany(company);
+				  previliges.setConfiguration("false");
+				  previliges.setAccountinfo("false");
+				  previliges.setInventoryinfo("false");
+				  previliges.setReports("false");
+				  previliges.setTransactions("false");
+				  prevList.add(previliges);
+			  }
+			  userPreviligeReposotory.save(prevList);
+
+			  List<AccGroup> accGroupList = new ArrayList<AccGroup>();
+			  accGroupList.add( new AccGroup("Sundry Creditors", company,1));
+			  accGroupList.add( new AccGroup("Sundry Debtors", company,1));
+			  accGroupList.add( new AccGroup("Purchases", company,1));
+			  accGroupList.add( new AccGroup("Sales", company,1));
+			  accGroupList.add( new AccGroup("Cash", company,1));
+			  accGroupList.add( new AccGroup("Bank", company,1));
+			  accGroupRepository.save(accGroupList);
+		  }
+
 		  return company;
 	  }
 	  
@@ -85,7 +90,7 @@ public class CompanyController {
 		 // return companyRepository.findAllByUsers_Id(userId);
 		  List<Previliges> previliges = userPreviligeReposotory.findAllByUser_Id(userId);
 		  for(Previliges previlige : previliges){
-			  if(Boolean.valueOf(previlige.getAccountinfo()) || Boolean.valueOf(previlige.getInventoryinfo()) 
+			  if(Boolean.valueOf(previlige.getConfiguration()) || Boolean.valueOf(previlige.getAccountinfo()) || Boolean.valueOf(previlige.getInventoryinfo()) 
 					  || Boolean.valueOf(previlige.getReports()) || Boolean.valueOf(previlige.getTransactions())){
 				  companyList.add(previlige.getCompany()) ;
 			  }
