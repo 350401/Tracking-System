@@ -64,9 +64,9 @@ var factory = {};
 app.factory('ItemService',function ($http){
 var factory = {};
    
-   factory.getAllItems = function(callback){
+   factory.getAllItems = function(companyId,callback){
 	   
-	  var URL =  hostname+'/item/getAll' ;
+	  var URL =  hostname+'/item/find-by-company/'+companyId ;
      $http.get(URL)
 	 .success(function (response) {
          callback(response);

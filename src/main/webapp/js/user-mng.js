@@ -35,6 +35,7 @@ app.controller('createUserController', function($scope,$rootScope,$location,$htt
 	$scope.user ={}; 
 	$scope.user.previliges = {};
 	$scope.user.previliges.accountinfo = "true";
+	$scope.user.previliges.configuration = "true";
 	$scope.user.previliges.inventoryinfo = "true";
 	$scope.optType = "create";
 	$scope.submitclick = false;
@@ -49,6 +50,7 @@ app.controller('createUserController', function($scope,$rootScope,$location,$htt
 					var previlige = {};
 					previlige.company = company;
 					previlige.accountinfo = true;
+					previlige.configuration = true;
 					previlige.inventoryinfo = true;
 					previlige.transactions = true;
 					previlige.reports = true;
@@ -80,6 +82,7 @@ app.controller('createUserController', function($scope,$rootScope,$location,$htt
 						previlige.user = responseData;
 						previlige.user['@id'] = responseData.id;
 						previlige.accountinfo = previlige.accountinfo ? true : false;
+						previlige.configuration = previlige.configuration ? true : false;
 						previlige.inventoryinfo = previlige.inventoryinfo ? true : false;
 						previlige.transactions = previlige.transactions ? true : false;
 						previlige.reports = previlige.reports ? true : false;						
@@ -94,6 +97,7 @@ app.controller('createUserController', function($scope,$rootScope,$location,$htt
 					$scope.user ={}; 
 					$scope.user.previliges = {};
 					$scope.user.previliges.accountinfo = "true";
+					$scope.user.previliges.configuration = "true";
 					$scope.user.previliges.inventoryinfo = "true";
 					$scope.optType = "create";
 					$scope.submitclick = false;					
@@ -123,6 +127,7 @@ app.controller('editUserController', function($scope,$rootScope,$location,$http,
 				$scope.previliges = [];
 					angular.forEach(response.data, function (previlige){
 						previlige.accountinfo = previlige.accountinfo == 'true'  ? true : false;
+						previlige.configuration = previlige.configuration == 'true'  ? true : false;
 						previlige.inventoryinfo = previlige.inventoryinfo == 'true'? true : false;
 						previlige.transactions = previlige.transactions == 'true'? true : false;
 						previlige.reports = previlige.reports == 'true' ? true : false;
@@ -148,6 +153,7 @@ app.controller('editUserController', function($scope,$rootScope,$location,$http,
 					angular.forEach($scope.previliges, function (previlige){
 						previlige.user = user;
 						previlige.accountinfo = previlige.accountinfo ? true : false;
+						previlige.configuration = previlige.configuration ? true : false;
 						previlige.inventoryinfo = previlige.inventoryinfo ? true : false;
 						previlige.transactions = previlige.transactions ? true : false;
 						previlige.reports = previlige.reports ? true : false;						

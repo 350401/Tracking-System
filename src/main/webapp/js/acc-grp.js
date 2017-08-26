@@ -70,7 +70,7 @@ app.controller('accGroupController', function($scope,$rootScope,$location,$http)
 	$scope.addGroup = function(){
 		var newgroup = {};
 		var selGroup = $scope.groupName;
-		if(selGroup== null || selGroup.length == 0){
+		if(selGroup== null || selGroup.length == 0 || $scope.singlegroup.selGroup == null || $scope.singlegroup.selGroup <= 0 ){
 			$scope.submitclick = true;
 			return;
 		}

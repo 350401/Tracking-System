@@ -12,6 +12,9 @@ app.controller('AgentCreateController', function($scope,$rootScope,$location,$ht
 			return;
 		}
 
+		agent.company = {};
+		agent.company.id = $scope.company.id;
+		
 			var dataObj = JSON.stringify(agent);
 			$http.post(hostname+'/agent/create', dataObj, {
 			  headers: {
@@ -88,7 +91,7 @@ app.controller('AgentsController', function($scope,$rootScope,$location,$http) {
 
     $rootScope.agents = [];
 	$rootScope.currentPage ='showAgents';
-	$http.get(hostname+'/agent/findAll').
+	$http.get(hostname+'/agent/find-by-company/'+$scope.company.id).
 			then(function(response) {
 				$rootScope.agents = response.data;
 				//$rootScope.curTab = 'userTab';
@@ -125,7 +128,7 @@ app.controller('AgentsController', function($scope,$rootScope,$location,$http) {
 					console.log(JSON.stringify(responseData));
 					$scope.message = 'Agent '+agent.name + ' deleted successfully.';
 					$scope.optStatus = 'Success';
-					$http.get(hostname+'/agent/findAll').
+					$http.get(hostname+'/agent/find-by-company/'+$scope.company.id).
 							then(function(response) {
 								$rootScope.agents = response.data;
 					});	

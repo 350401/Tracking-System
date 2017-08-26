@@ -3,7 +3,7 @@ app.controller('ledgerController', function($scope,$rootScope,$location,$http) {
 	$rootScope.ledgers = [];
 	$scope.message ='';
 	$rootScope.currentPage = 'viewLedgers';
-	$http.get(hostname + '/ledger/findAll').
+	$http.get(hostname + '/ledger/find-by-company/'+$scope.company.id).
 	then(function(response) 
 	{
 		$rootScope.ledgers = response.data;
@@ -35,7 +35,7 @@ app.controller('ledgerController', function($scope,$rootScope,$location,$http) {
 					console.log(JSON.stringify(responseData));
 					$scope.message = 'Ledger '+ledger.name + ' deleted successfully.';
 					$scope.optStatus = 'Success';
-					$http.get(hostname+'/ledger/findAll').
+					$http.get(hostname + '/ledger/find-by-company/'+$scope.company.id).
 							then(function(response) {
 								$rootScope.ledgers = response.data;
 					});	
