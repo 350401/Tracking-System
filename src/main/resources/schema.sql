@@ -16,6 +16,7 @@ CREATE TABLE previliges
 (
 	`id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	userid INT NOT NULL, 
+	configuration VARCHAR2(50) NOT NULL,
 	accountinfo VARCHAR2(50) NOT NULL,
 	inventoryinfo VARCHAR2(50) NOT NULL,
 	transactions VARCHAR2(50) NOT NULL,
@@ -49,6 +50,7 @@ CREATE TABLE company_user_previliges
 	`id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	companyid INT NOT NULL,
 	userid INT NOT NULL,
+	configuration VARCHAR2(50) NOT NULL,
 	accountinfo VARCHAR2(50) NOT NULL,
 	inventoryinfo VARCHAR2(50) NOT NULL,
 	transactions VARCHAR2(50) NOT NULL,
@@ -82,6 +84,7 @@ ALTER TABLE acc_group_dtl ADD FOREIGN KEY ( parentid ) REFERENCES acc_group_dtl(
 DROP TABLE IF EXISTS ledger;
 CREATE TABLE ledger( `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY, name VARCHAR2(100) NOT NULL,alias VARCHAR2(100) NOT NULL, groupid int,mailingname VARCHAR2(100) NOT NULL,mailingaddress VARCHAR2(500) ,mailingstate VARCHAR2(100) ,saletaxno BIGINT,taxpan BIGINT,opbal INT,curbal INT);
 ALTER TABLE ledger ADD FOREIGN KEY ( groupid ) REFERENCES acc_group_dtl( id ) ;
+
 
 
 DROP TABLE IF EXISTS transactions;
@@ -121,8 +124,9 @@ CREATE TABLE agents
 	phone BIGINT NOT NULL,
 	email VARCHAR2(50) NOT NULL,
 	commission INT NOT NULL,
+	companyid INT NOT NULL
 );
-
+ALTER TABLE agents ADD FOREIGN KEY ( companyid ) REFERENCES company( id ) ;
 
 
 
