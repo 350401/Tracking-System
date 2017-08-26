@@ -12,8 +12,8 @@
 					</div>
 				  </div>					
 					
-					     <div class="col-xs-6 panel panel-info" style="margin:10px;padding:0px" >
-					      <div class="panel-heading">Single Account Group</div>
+					     <div class="col-xs-6 panel panel-info" style="margin:10px;padding:0px" ng-class="{'has-error' : submitclick && (singlegroup.selGroup ==null || singlegroup.selGroup <= 0 )  }" >
+					      <div class="panel-heading">Single Account Group</div> 
 						
 							<form class="form-inline" style="padding:10px">
 							    <div class="form-group">
@@ -21,10 +21,10 @@
 									<select class="form-control input-sm" id="sel1" ng-model="singlegroup.selGroup" 
 										ng-options="group.name for group in singlegroups track by group.id"
 										ng-change="setChildrenData(singlegroup.selGroup,0)" 
+										required
 										>
 											<option value="">--  choose group if required --</option>
 									</select>	
-									
 								</div>
 							  </div>
 						   	
