@@ -1,7 +1,7 @@
 
-//var hostname ="http://localhost:8080";
+var hostname ="http://localhost:8080";
   //hostname = "http://service-trackingsys.1d35.starter-us-east-1.openshiftapps.com";
- var hostname = "http://service-itemmngtally.7e14.starter-us-west-2.openshiftapps.com"
+ //var hostname = "http://service-itemmngtally.7e14.starter-us-west-2.openshiftapps.com"
 
 
 var app = angular.module("invenApp", ["ngRoute","LocalStorageModule",'ngMaterial', 'ngMessages']);
@@ -125,7 +125,7 @@ app.config(['$routeProvider', '$locationProvider','localStorageServiceProvider',
 	.when('/SaleReturn'	,
 	      { 
 		    controller: 'SaleReturnController',
-		    templateUrl :'/inline-SaleReturn.html',
+		    templateUrl :'/html/inline-SalesReturn.html',
 		  })	
 	.when('/create-agent'	,
 	      { 
