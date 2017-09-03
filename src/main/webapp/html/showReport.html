@@ -1,0 +1,49 @@
+		<div class="panel panel-success" >
+		  <!-- Default panel contents -->
+		  
+		  
+		  <div class="panel-heading" style="background-image: linear-gradient(to bottom,#ffffff 0,#7dd05c 100%);color:#000000" ng-if="transType == 1" >Purchase Report</div>
+		  
+		  
+		  <div class="panel-heading" style="background-image: linear-gradient(to bottom,#ffffff 0,#7dd05c 100%);color:#000000" ng-if="transType == 2" >Sales Report</div>
+			
+		  <div class="panel-body">
+					<form class="form-inline">
+					  <div class="form-group">
+						<input type="text" class="form-control input-sm" id="exampleInputName2" placeholder="Voucher Number">
+					  </div>
+					  <button type="button" class="btn btn-default btn-sm">Search</button>
+					</form>
+			
+		  </div>
+							  <div class="form-group" ng-if="optStatus != null">
+								<label for="inputPassword3" class="col-sm-5 control-label"></label>
+								<div class="col-sm-5">
+									<span class="label label-success" ng-if="optStatus == 'Success'" > {{message}}</span>
+									<span class="label label-danger" ng-if="optStatus == 'Failed'" > {{message}} </span>	
+								</div>
+							  </div>	  
+		  <!-- Table -->
+          <table class="table table-hover input-sm">
+		  <thead> <tr> <th>#</th> <th>Transaction Date</th> <th>Voucher Number</th> <th>From Ledger Account</th><th>To Ledger Account</th> <th>Description</th> <th>Quantity</th>  <th>Cost</th> </tr> </thead> 
+		  <tbody> 
+			  <tr ng-repeat="report in reports" > 
+				
+				<th scope="row">{{$index+1}}</th> 
+				<td>{{report.transdate}}</td> 
+				<td>{{report.voucher}}</td> 
+				<td>{{report.fromledger.name}}</td> 
+				<td>{{report.ledger.name}}</td> 
+				<td>{{report.desc}}</td> 
+				<td>{{report.quandity}}</td> 
+			    <td>{{report.rate}}</td> 
+				<td>
+			    <form class="form-inline">
+					<button type="button" class="btn btn-warning btn-xs" ng-click="editPurchase(report);">Edit</button>
+					<button type="button" class="btn btn-danger btn-xs" ng-click="deleteAgent(agent)">Delete</button>
+				</form>				
+				</td> 
+			 </tr>  
+		  </tbody> 
+		  </table>
+		</div>
